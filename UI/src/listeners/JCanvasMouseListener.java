@@ -1,6 +1,9 @@
-package Dir_Graphics;
+package listeners;
+
+import graphics.JCanvas;
 
 import java.awt.event.*;
+
 import javax.swing.SwingUtilities;
 
 public abstract class JCanvasMouseListener extends MouseAdapter {
@@ -17,6 +20,7 @@ public abstract class JCanvasMouseListener extends MouseAdapter {
 		return canvas;
 	}
 
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			leftClickAction(e);
@@ -27,11 +31,12 @@ public abstract class JCanvasMouseListener extends MouseAdapter {
 
 	
 	protected void rightClickAction(MouseEvent e) {
-
+		canvas.repaint();
 	}
 
 	protected void leftClickAction(MouseEvent e) {
-		
+
+		canvas.repaint();
 	}
 	
 }

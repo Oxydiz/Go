@@ -1,4 +1,4 @@
-package Dir_Graphics;
+package drawables;
 
 import java.awt.*;
 

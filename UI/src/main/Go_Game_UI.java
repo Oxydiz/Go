@@ -1,21 +1,30 @@
 package main;
+import graphics.JCanvas;
+
 import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import Dir_Graphics.JCanvas;
-import Dir_Graphics.SimpleMouseListener;
+import listeners.SimpleMouseListener;
 
 public class Go_Game_UI {
 	
 	/*TODO :
 	 * Permettre la suppression d'un élement (fonctionne mais doit être moins precis)
+	 * 
+	 * EDIT :
+	 * 	Je pense l'avoir fait avec ma deadzone. (Valentin)
+	 * 
 	 */
+	
+	public static final String TITLE = "Jeu de Go";
+	public static final String VERSION = "0.2.1";
 	
 	public static final int GOBANSIZE = 9;
 	public static final int GRIDSIZE = 100;
 	public static final int ROCKSIZE = 50;
+	public static final int DEADZONE = GRIDSIZE / 3;
 	
 	public static void main(String[] args) {
 		//Set the goban
@@ -26,7 +35,7 @@ public class Go_Game_UI {
 		JLabel title = new JLabel("soloes");
 
 		//Build the main frame
-		JFrame frame = new JFrame("Jeu de go");
+		JFrame frame = new JFrame(TITLE + " " + VERSION);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		frame.setResizable(false);
 		frame.setAlwaysOnTop(true);

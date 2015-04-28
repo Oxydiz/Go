@@ -1,4 +1,4 @@
-package Dir_Graphics;
+package graphics;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import entities.Rock;
 import static main.Go_Game_UI.*;
-import Entities.Rock;
 
 public class JCanvas extends JPanel {
 	private static final long serialVersionUID = -1351443492057511284L;
