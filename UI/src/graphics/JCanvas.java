@@ -19,8 +19,7 @@ public class JCanvas extends JPanel {
 	}
 	
 	@Override
-	public void paint(Graphics g) {
-		
+	public void paint(Graphics g) {		
 		//Paint the goban	
 		g.setColor(Color.ORANGE);
 		g.fillRect(0,0,this.getWidth(),this.getHeight());
@@ -32,6 +31,8 @@ public class JCanvas extends JPanel {
 		for(int i=0;i<=this.getHeight();i+=GRIDSIZE){
 			g.drawLine(0, i, this.getWidth(), i);
 		}
+		//Display the last line
+		g.drawLine(0, this.getHeight()-1, this.getWidth(), this.getHeight()-1);
 		
 		for(int i = 0; i < rocks.size(); i++)
 			rocks.get(i).draw(g);

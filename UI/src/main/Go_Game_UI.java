@@ -5,17 +5,16 @@ import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import listeners.SimpleMouseListener;
 
 public class Go_Game_UI {
 	
 	/*TODO :
-	 * Permettre la suppression d'un élement (fonctionne mais doit être moins precis)
-	 * 
-	 * EDIT :
-	 * 	Je pense l'avoir fait avec ma deadzone. (Valentin)
-	 * 
+	 * Suppression validée
+	 * Ajout du score en bas
+	 * Ajout de la dernière ligne du goban
 	 */
 	
 	public static final String TITLE = "Jeu de Go";
@@ -23,7 +22,7 @@ public class Go_Game_UI {
 	
 	public static final int GOBANSIZE = 9;
 	public static final int GRIDSIZE = 100;
-	public static final int ROCKSIZE = 50;
+	public static final int ROCKSIZE = 80;
 	public static final int DEADZONE = GRIDSIZE / 3;
 	
 	public static void main(String[] args) {
@@ -32,14 +31,15 @@ public class Go_Game_UI {
 		goban.setPreferredSize(new Dimension(GOBANSIZE * GRIDSIZE,GOBANSIZE * GRIDSIZE));
 		new SimpleMouseListener(goban);
 		
-		JLabel title = new JLabel("soloes");
+		JLabel title = new JLabel("<html>Score<br> Player 1 : 0 <br> Player 2 : 0</html>");
+		title.setFont (title.getFont ().deriveFont (64.0f));
 
 		//Build the main frame
-		JFrame frame = new JFrame(TITLE + " " + VERSION);
+		JFrame frame = new JFrame("Jeu de go");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		frame.setResizable(false);
 		frame.setAlwaysOnTop(true);
-		frame.add(title, BorderLayout.PAGE_START);
+		frame.add(title, BorderLayout.PAGE_END);
 		frame.add(goban, BorderLayout.LINE_START);
 		frame.pack();
 		frame.setVisible(true);
