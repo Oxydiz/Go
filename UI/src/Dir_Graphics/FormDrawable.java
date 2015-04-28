@@ -13,7 +13,7 @@ public abstract class FormDrawable implements IDrawable {
 		this.rect = new Rectangle(pos,dim);
 	}
 	
-	public abstract void draw(Graphics g) ;
+	public abstract void draw(Graphics g);
 	
 	public Rectangle getRectangle(){
 		return (Rectangle) rect.clone();

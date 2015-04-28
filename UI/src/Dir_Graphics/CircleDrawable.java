@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public class CircleDrawable extends FormDrawable{
+public class CircleDrawable extends FormDrawable {
 
 	public CircleDrawable(Color color, Point pos, Dimension dim) {
 		super(color, pos, dim);
