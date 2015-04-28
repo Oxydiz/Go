@@ -16,7 +16,7 @@ public class Go_Game_UI {
 		goban.setPreferredSize(new Dimension(900,900));
 		new SimpleMouseListener(goban);
 		
-		JLabel title = new JLabel("Lorem ipsum doloes");
+		JLabel title = new JLabel("soloes");
 
 		//Build the main frame
 		JFrame frame = new JFrame("Jeu de go");
