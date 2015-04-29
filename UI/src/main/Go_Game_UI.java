@@ -19,7 +19,7 @@ public class Go_Game_UI {
 	 */
 	
 	public static final String TITLE = "Jeu de Go";
-	public static final String VERSION = "0.3.0";
+	public static final String VERSION = "0.4.0";
 	
 	public static final int GOBANSIZE = 9;
 	public static final int GRIDSIZE = 100;
@@ -41,7 +41,7 @@ public class Go_Game_UI {
 		box_text.add(text_content);
 
 		//Build the main frame
-		JFrame frame = new JFrame(TITLE);
+		JFrame frame = new JFrame(TITLE + " " + VERSION);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		frame.setResizable(false);
 		frame.setAlwaysOnTop(true);

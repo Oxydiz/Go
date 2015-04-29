@@ -48,7 +48,8 @@ public class SimpleMouseListener extends JCanvasMouseListener {
 		}
 		
 		if (canvas.isFree(p)) {
-			canvas.addRock(createRock(p));
+			if(!canvas.immediateDeath(p))
+				canvas.addRock(createRock(p));
 		}
 
 		super.leftClickAction(e);

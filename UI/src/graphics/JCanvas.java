@@ -16,10 +16,13 @@ public class JCanvas extends JPanel {
 
 	private ArrayList<Shape> shapes;
 	private ArrayList<Integer> free;
+	private ArrayList<Integer> ko;
 
 	public JCanvas() {
 		this.shapes = new ArrayList<Shape>();
 		this.free = new ArrayList<Integer>();
+		this.ko = new ArrayList<Integer>();
+		
 		for (int i = 0; i < GOBANSIZE + 1; i++)
 			for (int j = 0; j < GOBANSIZE + 1; j++)
 				free.add(j + i * GOBANSIZE);
@@ -45,7 +48,7 @@ public class JCanvas extends JPanel {
 			shapes.get(i).draw(g);
 	}
 
-	private void captureEnemy(Rock r) {
+	private boolean captureEnemy(Rock r) {
 
 		boolean c, re = false;
 
@@ -57,7 +60,7 @@ public class JCanvas extends JPanel {
 				continue;
 
 			for (int j = 0; j < shapes.get(i).size(); j++)
-				if (isFree(shapes.get(i).get(j), 1, 0) || isFree(shapes.get(i).get(j), -1, 0) || isFree(shapes.get(i).get(j), 0, 1) || isFree(shapes.get(i).get(j), 0, -1)) {
+				if (freeSpace(shapes.get(i).get(j)) > 0) {
 					c = false;
 					break;
 				}
@@ -72,6 +75,8 @@ public class JCanvas extends JPanel {
 
 		if (re)
 			this.repaint();
+		
+		return re;
 
 	}
 
@@ -119,11 +124,24 @@ public class JCanvas extends JPanel {
 
 		return a;
 	}
+	
+	private void ko(Rock r) {
+		
+		int position = isFree(r, 1, 0) ? r.getPosition() + 1 : isFree(r, -1, 0) ? r.getPosition() - 1 :
+				isFree(r, 0, 1) ? r.getPosition() + GOBANSIZE : r.getPosition() - GOBANSIZE;
+		
+		ko.add(position);
+		
+	}
 
 	public void addRock(Rock r) {
+		ko = new ArrayList<Integer>();
 		fuseShapes(r);
 		free.remove((Integer) (r.getX() + r.getY() * GOBANSIZE));
-		captureEnemy(r);
+		boolean c = captureEnemy(r);
+		if(c && freeSpace(r) == 1) {
+			ko(r);
+		}
 	}
 
 	public void removeRock(Rock r, boolean repaint) {
@@ -142,9 +160,17 @@ public class JCanvas extends JPanel {
 		}
 
 	}
+	
+	public int freeSpace(Rock r) {
+		int f = isFree(r, 1, 0) ? 1 : 0;
+		f += isFree(r, -1, 0) ? 1 : 0;
+		f += isFree(r, 0, 1) ? 1 : 0;
+		f += isFree(r, 0, -1) ? 1 : 0;
+		return f;
+	}
 
 	public boolean isFree(Point p) {
-		return free.contains(p.x + p.y * GOBANSIZE);
+		return free.contains(p.x + p.y * GOBANSIZE) && ! ko.contains(p.x + p.y * GOBANSIZE);
 	}
 
 	public boolean isFree(Rock r) {
@@ -152,7 +178,14 @@ public class JCanvas extends JPanel {
 	}
 
 	public boolean isFree(Rock r, int x, int y) {
-		return free.contains(r.getPosition() + x + (y * GOBANSIZE));
+		return free.contains(r.getPosition() + x + (y * GOBANSIZE)) && !ko.contains(r.getPosition() + x + (y * GOBANSIZE));
+	}
+	
+	public boolean immediateDeath(Point p) {
+		if(freeSpace(new Rock(p)) == 0)
+			return true;
+		
+		return false;
 	}
 
 }
