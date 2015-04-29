@@ -199,11 +199,30 @@ public class JCanvas extends JPanel {
 		return free.contains(r.getPosition() + x + (y * GOBANSIZE)) && !ko.contains(r.getPosition() + x + (y * GOBANSIZE));
 	}
 	
-	public boolean immediateDeath(Point p) {
-		if(freeSpace(new Rock(p)) == 0)
-			return true;
-		
-		return false;
+	public boolean immediateDeath(Point p, Color c) {
+
+		Rock r = new Rock(p);
+
+		int f = !isFree(r, 1, 0) ? getRock(r, 1, 0).getColor().equals(c) ? 1 : 0 : 1;
+		f += !isFree(r, -1, 0) ? getRock(r, -1, 0).getColor().equals(c) ? 1 : 0 : 1;
+		f += !isFree(r, 0, 1) ? getRock(r, 0, 1).getColor().equals(c) ? 1 : 0 : 1;
+		f += !isFree(r, 0, -1) ? getRock(r, 0, -1).getColor().equals(c) ? 1 : 0 : 1;
+
+		return f == 0;
+
+	}
+
+	private Rock getRock(Rock r, int x, int y) {
+
+		for (int i = 0; i < shapes.size(); i++) {
+
+			Rock o = shapes.get(i).get(new Point(r.getX() + x, r.getY() + y));
+
+			if (o != null)
+				return o;
+		}
+
+		return null;
 	}
 
 }

@@ -14,7 +14,7 @@ public class SimpleMouseListener extends JCanvasMouseListener {
 		private static final long serialVersionUID = 1L;
 	}
 
-	Color playerColor = Color.BLACK;
+	Color playerColor = Color.WHITE;
 
 	public SimpleMouseListener(JCanvas canvas) {
 		super(canvas);
@@ -48,7 +48,7 @@ public class SimpleMouseListener extends JCanvasMouseListener {
 		}
 		
 		if (canvas.isFree(p)) {
-			if(!canvas.immediateDeath(p))
+			if(!canvas.immediateDeath(p,playerColor))
 				canvas.addRock(createRock(p));
 		}
 

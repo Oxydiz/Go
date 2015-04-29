@@ -19,11 +19,12 @@ public class Go_Game_UI {
 	*		Basique: random point,
 	*		Medium: random point vers des pierres existantes
 	*		IA Hard : lorem ipsum dolores sit j'en sais rien xD
+	*			EDIT : T'inquiètes on bidouillera un truc xD (Valentin)
 	*Fin Note Max
 	 */
 	
 	public static final String TITLE = "Jeu de Go";
-	public static final String VERSION = "0.4.1";
+	public static final String VERSION = "0.4.2";
 	
 	public static final int GOBANSIZE = 9;
 	public static final int GRIDSIZE = 100;
