@@ -30,7 +30,7 @@ public class SimpleMouseListener extends JCanvasMouseListener {
 			return;
 		}
 		
-		if (!canvas.isFree(new Rock(p)))
+		if (!canvas.isFree(p))
 			canvas.removeRock(p);
 
 		super.leftClickAction(e);
@@ -47,8 +47,7 @@ public class SimpleMouseListener extends JCanvasMouseListener {
 			return;
 		}
 		
-		Rock r = new Rock(p);
-		if (canvas.isFree(r)) {
+		if (canvas.isFree(p)) {
 			canvas.addRock(createRock(p));
 		}
 
@@ -75,6 +74,9 @@ public class SimpleMouseListener extends JCanvasMouseListener {
 			p.y += GRIDSIZE - (p.y % GRIDSIZE);
 		else
 			throw new OutOfRangeException();
+		
+		p.x /= GRIDSIZE;
+		p.y /= GRIDSIZE;
 		
 		return p;
 	}

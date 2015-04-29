@@ -30,16 +30,25 @@ public class Rock {
 		
 		Color c = g.getColor();
 		g.setColor(color);
-		g.fillOval(this.getX() - ROCKSIZE / 2, this.getY() - ROCKSIZE / 2, ROCKSIZE, ROCKSIZE);
+		g.fillOval(this.getX() * GRIDSIZE - ROCKSIZE / 2, this.getY() * GRIDSIZE - ROCKSIZE / 2, ROCKSIZE, ROCKSIZE);
 		g.setColor(c);
 		
+	}
+	
+	public Color getColor() {
+		return color;
 	}
 
 	public int getX() {
 		return x;
 	}
+	
 	public int getY() {
 		return y;
+	}
+	
+	public int getPosition() {
+		return x + y * GOBANSIZE;
 	}
 
 }
