@@ -5,7 +5,9 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import entities.Rock;
 import entities.Shape;
@@ -13,10 +15,19 @@ import static main.Go_Game_UI.*;
 
 public class JCanvas extends JPanel {
 	private static final long serialVersionUID = -1351443492057511284L;
-
+	
 	private ArrayList<Shape> shapes;
 	private ArrayList<Integer> free;
 	private ArrayList<Integer> ko;
+	private JLabel current_player_text;
+
+	public JLabel getCurrent_player_text() {
+		return current_player_text;
+	}
+
+	public void setCurrent_player_text(JLabel current_player_text) {
+		this.current_player_text = current_player_text;
+	}
 
 	public JCanvas() {
 		this.shapes = new ArrayList<Shape>();
@@ -142,6 +153,13 @@ public class JCanvas extends JPanel {
 		if(c && freeSpace(r) == 1) {
 			ko(r);
 		}
+		
+		//Change player
+		if(current_player_text.getText() == "<html>PLAYER TURN</html>")
+			current_player_text.setText("<html>IA TURN</html>");
+		else 
+			current_player_text.setText("<html>PLAYER TURN</html>");
+		current_player_text.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 
 	public void removeRock(Rock r, boolean repaint) {

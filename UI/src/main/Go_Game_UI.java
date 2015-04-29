@@ -13,13 +13,17 @@ import listeners.SimpleMouseListener;
 public class Go_Game_UI {
 	
 	/*TODO :
-	 * Suppression validée
-	 * Ajout du score en bas
-	 * Ajout de la dernière ligne du goban
+	*Begin Note Max : 
+	*	Splash+Pstart(Easy/Beginner)+Lstart(Medium/Normal)+Pend(Hard /master)
+	*	Menu IA (
+	*		Basique: random point,
+	*		Medium: random point vers des pierres existantes
+	*		IA Hard : lorem ipsum dolores sit j'en sais rien xD
+	*Fin Note Max
 	 */
 	
 	public static final String TITLE = "Jeu de Go";
-	public static final String VERSION = "0.4.0";
+	public static final String VERSION = "0.4.1";
 	
 	public static final int GOBANSIZE = 9;
 	public static final int GRIDSIZE = 100;
@@ -33,12 +37,10 @@ public class Go_Game_UI {
 		new SimpleMouseListener(goban);
 		
 		Box box_text = Box.createVerticalBox();
-		JLabel text_title = new JLabel("<html>Score</html>",SwingConstants.CENTER);
-		text_title.setFont (text_title.getFont ().deriveFont (64.0f));
-		box_text.add(text_title);
-		JLabel text_content = new JLabel("<html>Player 1 : 0 rock <br> Player 2 : 0 rock</html>");
-		text_content.setFont (text_content.getFont ().deriveFont (32.0f));
-		box_text.add(text_content);
+		JLabel current_text_player = new JLabel("<html>PLAYER TURN</html>",SwingConstants.CENTER);
+		current_text_player.setFont (current_text_player.getFont ().deriveFont (64.0f));		
+		box_text.add(current_text_player);
+		goban.setCurrent_player_text(current_text_player);
 
 		//Build the main frame
 		JFrame frame = new JFrame(TITLE + " " + VERSION);
