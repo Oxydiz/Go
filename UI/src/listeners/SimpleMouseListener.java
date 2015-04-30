@@ -59,7 +59,7 @@ public class SimpleMouseListener extends JCanvasMouseListener {
 				
 				
 				//--------------IA TRY AND FAILED (VERY CALCULATION MUCH MEMORY)			
-				final Timer timer = new Timer(1000, null);
+				final Timer timer = new Timer(500, null);
 	            ActionListener listener = new ActionListener() {
 	                @Override 
 	                public void actionPerformed(ActionEvent e) {
