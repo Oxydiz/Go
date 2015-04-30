@@ -13,8 +13,9 @@ import listeners.SimpleMouseListener;
 public class Go_Game_UI {
 	
 	/*TODO :
-	 * IA Basique faite, faire une class avec les différentes IA, et appeler IA = new IA("easy"); 
-	 * pour améliorer la lisibilité du code
+	 * IA Basique située dans SimpleMouseListener après addRock(L57)
+	 * Toujours le problème de mise à jour du label, franchement chiant..
+	 * 
 	 * 
 	*Begin Note Max : 
 	*	Splash+Pstart(Easy/Beginner)+Lstart(Medium/Normal)+Pend(Hard /master)

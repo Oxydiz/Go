@@ -21,14 +21,6 @@ public class JCanvas extends JPanel {
 	private ArrayList<Integer> ko;
 	private JLabel current_player_text;
 
-	public JLabel getCurrent_player_text() {
-		return current_player_text;
-	}
-
-	public void setCurrent_player_text(JLabel current_player_text) {
-		this.current_player_text = current_player_text;
-	}
-
 	public JCanvas() {
 		this.shapes = new ArrayList<Shape>();
 		this.free = new ArrayList<Integer>();
@@ -144,7 +136,7 @@ public class JCanvas extends JPanel {
 		ko.add(position);
 		
 	}
-
+	
 	public void addRock(Rock r) {
 		ko = new ArrayList<Integer>();
 		fuseShapes(r);
@@ -161,40 +153,7 @@ public class JCanvas extends JPanel {
 		else{
 			current_player_text.setText("<html>PLAYER TURN</html>");
 		}
-		current_player_text.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		
-		//IA TRY AND FAILED (VERY CALCULATION MUCH MEMORY)		
-		if(current_player_text.getText() == "<html>IA TURN</html>"){	
-			
-			//Should put a delay a display IT TURN.. but not .
-			try {
-				this.repaint();
-			    Thread.sleep(1000);
-			} 
-			catch(InterruptedException ex) {
-			    Thread.currentThread().interrupt();
-			}
-			
-			//List free zone
-			Rock IA_free;			
-			ArrayList<Rock> freeZone = new ArrayList<Rock>();
-			for(int i = 0; i<=GOBANSIZE; i++){
-				for(int j = 0; j<=GOBANSIZE; j++){
-					IA_free = new Rock(Color.WHITE,i,j);
-					if(isFree(IA_free)){
-						freeZone.add(IA_free);
-					}
-				}
-			}
-			
-			int choice_IA = (int)(Math.random() * (freeZone.size()));
-			
-			//Add the new
-			addRock(freeZone.get(choice_IA));	
-			}
-		//IA END
-		
+		current_player_text.setHorizontalAlignment(SwingConstants.CENTER);			
 	}
 
 	public void removeRock(Rock r, boolean repaint) {
@@ -258,6 +217,18 @@ public class JCanvas extends JPanel {
 		}
 
 		return null;
+	}
+	
+	public JLabel getCurrent_player_text() {
+		return current_player_text;
+	}
+
+	public void setCurrent_player_text(JLabel current_player_text) {
+		this.current_player_text = current_player_text;
+	}
+	
+	public void setCurrent_player_text(String current_player_text) {
+		this.current_player_text.setText(current_player_text);
 	}
 
 }

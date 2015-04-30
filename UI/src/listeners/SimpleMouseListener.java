@@ -3,6 +3,7 @@ package listeners;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import entities.Rock;
 import graphics.JCanvas;
@@ -48,8 +49,48 @@ public class SimpleMouseListener extends JCanvasMouseListener {
 		}
 		
 		if (canvas.isFree(p)) {
-			if(!canvas.immediateDeath(p,playerColor))
+			if(!canvas.immediateDeath(p,playerColor)){
 				canvas.addRock(createRock(p));
+				
+				
+				
+				//--------------IA TRY AND FAILED (VERY CALCULATION MUCH MEMORY)
+				/*
+				 * TODO:
+				 * 	Réussir à faire wait 1s après le changement de player..
+				 * */
+				if(canvas.getCurrent_player_text().getText()=="<html>IA TURN</html>"){
+					//Should put a delay  displaying IA TURN.. but not .
+					/*try {
+					    Thread.sleep(1000);
+					} 
+					catch(InterruptedException ex) {
+					    Thread.currentThread().interrupt();
+					}*/
+				}
+				
+				//List free zone
+				Rock IA_free;			
+				ArrayList<Rock> freeZone = new ArrayList<Rock>();
+				for(int i = 1; i<GOBANSIZE; i++){
+					for(int j = 1; j<GOBANSIZE; j++){
+						IA_free = new Rock(Color.WHITE,i,j);
+						if(canvas.isFree(IA_free)){
+							freeZone.add(IA_free);
+						}
+					}
+				}
+				
+				//Choose a free space in the goban
+				int choice_IA = (int)(Math.random() * (freeZone.size()));
+				
+				//Add the new
+				canvas.addRock(freeZone.get(choice_IA));
+				//--------------IA END--------------------------
+				
+				
+				
+			}				
 		}
 
 		super.leftClickAction(e);
