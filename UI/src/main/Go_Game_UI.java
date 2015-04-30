@@ -13,10 +13,12 @@ import listeners.SimpleMouseListener;
 public class Go_Game_UI {
 	
 	/*TODO :
+	 * IA Basique faite, faire une class avec les différentes IA, et appeler IA = new IA("easy"); 
+	 * pour améliorer la lisibilité du code
+	 * 
 	*Begin Note Max : 
 	*	Splash+Pstart(Easy/Beginner)+Lstart(Medium/Normal)+Pend(Hard /master)
 	*	Menu IA (
-	*		Basique: random point,
 	*		Medium: random point vers des pierres existantes
 	*		IA Hard : lorem ipsum dolores sit j'en sais rien xD
 	*			EDIT : T'inquiètes on bidouillera un truc xD (Valentin)
@@ -29,7 +31,7 @@ public class Go_Game_UI {
 	public static final int GOBANSIZE = 9;
 	public static final int GRIDSIZE = 100;
 	public static final int ROCKSIZE = 80;
-	public static final int DEADZONE = GRIDSIZE / 3;
+	public static final int DEADZONE = GRIDSIZE / 4;
 	
 	public static void main(String[] args) {
 		//Set the goban

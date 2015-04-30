@@ -155,11 +155,45 @@ public class JCanvas extends JPanel {
 		}
 		
 		//Change player
-		if(current_player_text.getText() == "<html>PLAYER TURN</html>")
-			current_player_text.setText("<html>IA TURN</html>");
-		else 
+		if(current_player_text.getText() == "<html>PLAYER TURN</html>"){
+			current_player_text.setText("<html>IA TURN</html>");				
+		}
+		else{
 			current_player_text.setText("<html>PLAYER TURN</html>");
+		}
 		current_player_text.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		
+		//IA TRY AND FAILED (VERY CALCULATION MUCH MEMORY)		
+		if(current_player_text.getText() == "<html>IA TURN</html>"){	
+			
+			//Should put a delay a display IT TURN.. but not .
+			try {
+			    Thread.sleep(200);
+			} 
+			catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}
+			
+			//List free zone
+			Rock IA_free;			
+			ArrayList<Rock> freeZone = new ArrayList<Rock>();
+			for(int i = 0; i<=GOBANSIZE; i++){
+				for(int j = 0; j<=GOBANSIZE; j++){
+					IA_free = new Rock(Color.BLACK,i,j);
+					if(isFree(IA_free)){
+						freeZone.add(IA_free);
+					}
+				}
+			}
+			
+			int choice_IA = (int)(Math.random() * (freeZone.size()));
+			
+			//Add the new
+			addRock(freeZone.get(choice_IA));	
+			}
+		//IA END
+		
 	}
 
 	public void removeRock(Rock r, boolean repaint) {
