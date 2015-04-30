@@ -169,7 +169,8 @@ public class JCanvas extends JPanel {
 			
 			//Should put a delay a display IT TURN.. but not .
 			try {
-			    Thread.sleep(200);
+				this.repaint();
+			    Thread.sleep(1000);
 			} 
 			catch(InterruptedException ex) {
 			    Thread.currentThread().interrupt();
@@ -180,7 +181,7 @@ public class JCanvas extends JPanel {
 			ArrayList<Rock> freeZone = new ArrayList<Rock>();
 			for(int i = 0; i<=GOBANSIZE; i++){
 				for(int j = 0; j<=GOBANSIZE; j++){
-					IA_free = new Rock(Color.BLACK,i,j);
+					IA_free = new Rock(Color.WHITE,i,j);
 					if(isFree(IA_free)){
 						freeZone.add(IA_free);
 					}
