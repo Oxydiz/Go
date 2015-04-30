@@ -14,7 +14,6 @@ public class Go_Game_UI {
 	
 	/*TODO :
 	 * IA Basique située dans SimpleMouseListener après addRock(L57)
-	 * Toujours le problème de mise à jour du label, franchement chiant..
 	 * 
 	 * 
 	*Begin Note Max : 
