@@ -7,15 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import listeners.SimpleMouseListener;
+import listeners.PlayerListener;
 
 public class Go_Game_UI {
 	
 	/*TODO :
-	 * IA Basique située dans SimpleMouseListener après addRock(L57)
 	 * Bug : dans les shapes, il faut gérer les cotés
-	 * Bug : l'utilisateur peut placer des pions sur les cotés gauche droit
-	 * A améliorer : remplacer les pierres par des images
+	 * Bug : l'utilisateur peut placer des pions sur les cotés gauche droit mais pas en haut
+	 * Bug : IA_Easy commence à partir en couille tant qu'elle connait pas la couleur car elle essaie de bouffer ses jetons
+	 * Bug : On voit qu'une demi pierre soit mettre un padding , soit GobanSize à 10 et corriger le bug des cotés en les interdisant
+	 * 
 	 * 
 	*Begin Note Max : 
 	*	Splash+Pstart(Easy/Beginner)+Lstart(Medium/Normal)+Pend(Hard /master)
@@ -28,7 +29,7 @@ public class Go_Game_UI {
 	 */
 	
 	public static final String TITLE = "Jeu de Go";
-	public static final String VERSION = "0.4.3";
+	public static final String VERSION = "0.4.4";
 	
 	public static final int GOBANSIZE = 9;
 	public static final int GRIDSIZE = 100;
@@ -39,7 +40,7 @@ public class Go_Game_UI {
 		//Set the goban
 		JCanvas goban = new JCanvas();
 		goban.setPreferredSize(new Dimension(GOBANSIZE * GRIDSIZE,GOBANSIZE * GRIDSIZE));
-		new SimpleMouseListener(goban);
+		new PlayerListener(goban,"Random");
 		
 		Box box_text = Box.createVerticalBox();
 		JLabel current_text_player = new JLabel("<html>PLAYER TURN</html>",SwingConstants.CENTER);

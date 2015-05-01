@@ -216,7 +216,7 @@ public class JCanvas extends JPanel {
 
 	}
 
-	private Rock getRock(Rock r, int x, int y) {
+	public Rock getRock(Rock r, int x, int y) {
 
 		for (int i = 0; i < shapes.size(); i++) {
 

@@ -9,7 +9,8 @@ import entities.Rock;
 import graphics.JCanvas;
 import static main.Go_Game_UI.*;
 
-public class SimpleMouseListener extends JCanvasMouseListener {
+public class PlayerListener extends JCanvasMouseListener {
+	String IA_Level = "Random";
 	
 	private class OutOfRangeException extends Exception {
 		private static final long serialVersionUID = 1L;
@@ -17,8 +18,9 @@ public class SimpleMouseListener extends JCanvasMouseListener {
 
 	Color playerColor = Color.BLACK;
 
-	public SimpleMouseListener(JCanvas canvas) {
+	public PlayerListener(JCanvas canvas, String IA_Level) {
 		super(canvas);
+		this.IA_Level = IA_Level;
 	}
 
 	@Override
@@ -52,7 +54,12 @@ public class SimpleMouseListener extends JCanvasMouseListener {
 		if (canvas.isFree(p)) {
 			if(!canvas.immediateDeath(p,playerColor)){
 				canvas.addRock(createRock(p));
-				IA.IA_Easy(canvas);
+				if(IA_Level == "Random"){
+					IA.IA_Random(canvas);
+				}
+				else{
+					IA.IA_Easy(canvas);
+				}
 			}				
 		}
 		super.leftClickAction(e);
