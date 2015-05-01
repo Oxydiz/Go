@@ -34,18 +34,28 @@ public class JCanvas extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		// Paint the goban
-		g.setColor(Color.ORANGE);
+		/* Some interesting color 
+		g.setColor(new Color(126,82,58));
+		g.setColor(new Color(214,138,103));
+		g.setColor(new Color(150,113,23));
+		g.setColor(new Color(195,176,125));
+		*/
+		g.setColor(new Color(203,160,0));
+		
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
-		g.setColor(Color.BLACK);
+		g.setColor(new Color(32,32,32));
 		for (int i = 0; i <= this.getWidth(); i += GRIDSIZE) {
 			g.drawLine(i, 0, i, this.getHeight());
+			g.drawLine(i+1, 0, i+1, this.getHeight());
 		}
 		for (int i = 0; i <= this.getHeight(); i += GRIDSIZE) {
 			g.drawLine(0, i, this.getWidth(), i);
+			g.drawLine(0, i+1, this.getWidth(), i+1);
 		}
 		// Display the last line
 		g.drawLine(0, this.getHeight() - 1, this.getWidth(), this.getHeight() - 1);
+		g.drawLine(0, this.getHeight() - 2, this.getWidth(), this.getHeight() - 2);
 
 		for (int i = 0; i < shapes.size(); i++)
 			shapes.get(i).draw(g);

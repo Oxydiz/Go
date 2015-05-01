@@ -2,7 +2,6 @@ package main;
 import graphics.JCanvas;
 
 import java.awt.*;
-
 import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,14 +13,17 @@ public class Go_Game_UI {
 	
 	/*TODO :
 	 * IA Basique située dans SimpleMouseListener après addRock(L57)
-	 * 
+	 * Bug : dans les shapes, il faut gérer les cotés
+	 * Bug : l'utilisateur peut placer des pions sur les cotés gauche droit
+	 * A améliorer : remplacer les pierres par des images
 	 * 
 	*Begin Note Max : 
 	*	Splash+Pstart(Easy/Beginner)+Lstart(Medium/Normal)+Pend(Hard /master)
 	*	Menu IA (
-	*		Medium: random point vers des pierres existantes
+	*		Medium: random point vers des pierres existantes (et si 3 connexions sur une pierre noire alors la manger)
 	*		IA Hard : lorem ipsum dolores sit j'en sais rien xD
 	*			EDIT : T'inquiètes on bidouillera un truc xD (Valentin)
+	*	Idée à la con : Panda + Go + Bambou
 	*Fin Note Max
 	 */
 	
@@ -41,9 +43,9 @@ public class Go_Game_UI {
 		
 		Box box_text = Box.createVerticalBox();
 		JLabel current_text_player = new JLabel("<html>PLAYER TURN</html>",SwingConstants.CENTER);
-		current_text_player.setFont (current_text_player.getFont ().deriveFont (64.0f));		
+		current_text_player.setFont (current_text_player.getFont ().deriveFont (64.0f));
 		box_text.add(current_text_player);
-		goban.setCurrent_player_text(current_text_player);
+		goban.setCurrent_player_text(current_text_player);		
 
 		//Build the main frame
 		JFrame frame = new JFrame(TITLE + " " + VERSION);
