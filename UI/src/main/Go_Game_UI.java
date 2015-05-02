@@ -24,7 +24,7 @@ public class Go_Game_UI {
 	 * Bug : l'utilisateur peut placer des pions sur les cotés gauche droit mais pas en haut
 	 * Bug : IA_Easy commence à partir en couille tant qu'elle connait pas la couleur car elle essaie de bouffer ses jetons
 	 * Bug : On voit qu'une demi pierre soit mettre un padding , soit GobanSize à 10 et corriger le bug des cotés en les interdisant
-	 * Bug : L'IA peut mettre une pierre quand elle vient de se la faire prendre..
+	 * Bug : L'IA peut mettre une pierre quand elle vient de se la faire prendre..(verifier couleur des voisins pour la position) et si pas de place ->exception fin du game
 	 * 
 	*Begin Note Max : 
 	*	Menu IA (
@@ -46,7 +46,7 @@ public class Go_Game_UI {
 		//Set the goban
 		JCanvas goban = new JCanvas();
 		goban.setPreferredSize(new Dimension(GOBANSIZE * GRIDSIZE,GOBANSIZE * GRIDSIZE));
-		new PlayerListener(goban,"Easy");
+		new PlayerListener(goban,"Random");
 		
 		Box box_text = Box.createVerticalBox();
 		JLabel current_text_player = new JLabel("<html>PLAYER TURN</html>",SwingConstants.CENTER);
