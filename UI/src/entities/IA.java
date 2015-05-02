@@ -50,11 +50,11 @@ public class IA {
             public void actionPerformed(ActionEvent e) {
             	if(canvas.getCurrent_player_text().getText()=="<html>IA TURN</html>"){
             		//Check easy point 
-    				for(int i = 1; i<GOBANSIZE; i++){
-    					for(int j = 1; j<GOBANSIZE; j++){
+    				for(int i = 2; i<GOBANSIZE-1; i++){
+    					for(int j = 2; j<GOBANSIZE-1; j++){
     						//Verifier la couleur du middle pion si c'est un noiro alors on le bouffe
     						//System.out.println(canvas.getRock(new Rock(Color.BLACK,i,j),i,j).getColor()); à mettre dans le true
-    						if(true){
+    						if(!canvas.isFree(new Rock(Color.RED,i,j))){
     							if(!canvas.isFree( new Rock(Color.WHITE,i-1,j)) && 
     									!canvas.isFree( new Rock(Color.WHITE,i+1,j)) &&
     									!canvas.isFree( new Rock(Color.WHITE,i,j-1)) &&
@@ -85,7 +85,7 @@ public class IA {
     							if(canvas.isFree( new Rock(Color.WHITE,i-1,j)) && 
     									!canvas.isFree( new Rock(Color.WHITE,i+1,j)) &&
     									!canvas.isFree( new Rock(Color.WHITE,i,j-1)) &&
-    									canvas.isFree( new Rock(Color.WHITE,i,j+1))){
+    									!canvas.isFree( new Rock(Color.WHITE,i,j+1))){
     								canvas.addRock(new Rock(Color.WHITE,i-1,j));
     			    				canvas.repaint();
     			    				return;
