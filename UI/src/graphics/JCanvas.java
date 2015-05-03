@@ -26,8 +26,8 @@ public class JCanvas extends JPanel {
 		this.free = new ArrayList<Integer>();
 		this.ko = new ArrayList<Integer>();
 		
-		for (int i = 0; i < GOBANSIZE + 1; i++)
-			for (int j = 0; j < GOBANSIZE + 1; j++)
+		for (int i = 0; i < GOBANSIZE; i++)
+			for (int j = 0; j < GOBANSIZE; j++)
 				free.add(j + i * GOBANSIZE);
 	}
 
@@ -192,6 +192,10 @@ public class JCanvas extends JPanel {
 	}
 
 	public boolean isFree(Point p) {
+		
+		if(p.x < 0 || p.x >= GOBANSIZE || p.y < 0 || p.y >= GOBANSIZE)
+			return false;
+		
 		return free.contains(p.x + p.y * GOBANSIZE) && ! ko.contains(p.x + p.y * GOBANSIZE);
 	}
 
@@ -200,17 +204,27 @@ public class JCanvas extends JPanel {
 	}
 
 	public boolean isFree(Rock r, int x, int y) {
+		
+		if(r.getX() + x < 0 || r.getX() + x >= GOBANSIZE || r.getY() + y < 0 || r.getY() + y >= GOBANSIZE)
+			return false;
+		
 		return free.contains(r.getPosition() + x + (y * GOBANSIZE)) && !ko.contains(r.getPosition() + x + (y * GOBANSIZE));
 	}
 	
 	public boolean immediateDeath(Point p, Color c) {
 
 		Rock r = new Rock(p);
-
-		int f = !isFree(r, 1, 0) ? getRock(r, 1, 0).getColor().equals(c) ? 1 : 0 : 1;
-		f += !isFree(r, -1, 0) ? getRock(r, -1, 0).getColor().equals(c) ? 1 : 0 : 1;
-		f += !isFree(r, 0, 1) ? getRock(r, 0, 1).getColor().equals(c) ? 1 : 0 : 1;
-		f += !isFree(r, 0, -1) ? getRock(r, 0, -1).getColor().equals(c) ? 1 : 0 : 1;
+		
+		int f = 0;
+		
+		if(p.x < GOBANSIZE - 1)
+			f += !isFree(r, 1, 0) ? getRock(r, 1, 0).getColor().equals(c) ? 1 : 0 : 1;
+		if(p.x > 0)
+			f += !isFree(r, -1, 0) ? getRock(r, -1, 0).getColor().equals(c) ? 1 : 0 : 1;
+		if(p.y < GOBANSIZE - 1)
+			f += !isFree(r, 0, 1) ? getRock(r, 0, 1).getColor().equals(c) ? 1 : 0 : 1;
+		if(p.y > 0)
+			f += !isFree(r, 0, -1) ? getRock(r, 0, -1).getColor().equals(c) ? 1 : 0 : 1;
 
 		return f == 0;
 
