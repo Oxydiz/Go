@@ -23,18 +23,17 @@ import javax.swing.Timer;
 import listeners.PlayerListener;
 
 public class Go_Game_UI {
-	/*TODO :	 *
-	 * Attention au decalage, goban size = 11 pour un 9x9 a cause du padding 
+	/*TODO : 
+	 * Bug du thread, aussi bien dans IA random que Easy 
 	 * Decompte des points (fonction qui compte le nombre d'intersection dans une shape (avec color)
-	 * UI comme un joli goban
-		Choisir son IA
+	 * Choisir son IA
 		3 Gros boutons (IA_EASY,IA_MEDIUM_IA_HARD)
 		
 		IA Hard, principe de MonteCarlo
 	 */
 	
 	public static final String TITLE = "Jeu de Go";
-	public static final String VERSION = "0.4.8";
+	public static final String VERSION = "0.4.9";
 	
 	public static final int GOBANSIZE = 9;
 	public static final int GRIDSIZE = (Toolkit.getDefaultToolkit().getScreenSize().getHeight() >= 1800)?100:80;

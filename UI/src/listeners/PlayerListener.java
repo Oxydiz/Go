@@ -42,6 +42,7 @@ public class PlayerListener extends JCanvasMouseListener {
 		try {
 			p = getPoint(e);
 		} catch (OutOfRangeException e1) {
+			
 			return;
 		}
 
@@ -86,7 +87,7 @@ public class PlayerListener extends JCanvasMouseListener {
 			p.x -= p.x % GRIDSIZE;
 		else if ((p.x % GRIDSIZE) >= (GRIDSIZE - (GRIDSIZE - DEADZONE) / 2))
 			p.x += GRIDSIZE - (p.x % GRIDSIZE);
-		else
+		else 
 			throw new OutOfRangeException();
 
 		if ((p.y % GRIDSIZE) <= (GRIDSIZE - DEADZONE) / 2)

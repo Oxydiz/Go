@@ -53,26 +53,37 @@ public class JCanvas extends JPanel {
 
 	@Override
 	public void paint(Graphics g) {
-		// Paint the goban
+		//Paint the goban
 		g.setColor(color_bg);
-		
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-
+		
+		//Paint details
 		g.setColor(new Color(32,32,32));
+		g.fillOval(GRIDSIZE*3-ROCKSIZE/8,GRIDSIZE*3-ROCKSIZE/8, ROCKSIZE/4, ROCKSIZE/4);
+		g.fillOval(GRIDSIZE*GOBANSIZE-GRIDSIZE*2-ROCKSIZE/8,GRIDSIZE*GOBANSIZE-GRIDSIZE*2-ROCKSIZE/8, ROCKSIZE/4, ROCKSIZE/4);
+		g.fillOval(GRIDSIZE*3-ROCKSIZE/8,GRIDSIZE*GOBANSIZE-GRIDSIZE*2-ROCKSIZE/8, ROCKSIZE/4, ROCKSIZE/4);
+		g.fillOval(GRIDSIZE*GOBANSIZE-GRIDSIZE*2-ROCKSIZE/8,GRIDSIZE*3-ROCKSIZE/8, ROCKSIZE/4, ROCKSIZE/4);
+		
+		//Paint Grid
 		for (int i = GRIDSIZE; i <= this.getWidth()-GRIDSIZE; i += GRIDSIZE) {
 			g.drawLine(i, GRIDSIZE, i, this.getHeight()-GRIDSIZE);
 			g.drawLine(i+1, GRIDSIZE, i+1, this.getHeight()-GRIDSIZE);
+			g.drawLine(i-1, GRIDSIZE, i-1, this.getHeight()-GRIDSIZE);
 		}
 		for (int i = GRIDSIZE; i <= this.getHeight()-GRIDSIZE; i += GRIDSIZE) {
 			g.drawLine(GRIDSIZE, i, this.getWidth()-GRIDSIZE, i);
 			g.drawLine(GRIDSIZE, i+1, this.getWidth()-GRIDSIZE, i+1);
+			g.drawLine(GRIDSIZE, i-1, this.getWidth()-GRIDSIZE, i-1);
 		}
-		// Display the last line
+		
+		//Paint a separation line
 		g.drawLine(0, this.getHeight() - 1, this.getWidth(), this.getHeight() - 1);
 		g.drawLine(0, this.getHeight() - 2, this.getWidth(), this.getHeight() - 2);
 
+		//Display the shapes
 		for (int i = 0; i < shapes.size(); i++)
-			shapes.get(i).draw(g);
+			shapes.get(i).draw(g);	
+		
 	}
 
 	private boolean captureEnemy(Rock r) {
