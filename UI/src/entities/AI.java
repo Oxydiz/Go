@@ -71,7 +71,7 @@ public class AI {
 
 		listener.mouseClicked(new MouseEvent(new Component() {
 			private static final long serialVersionUID = 1L;
-		}, MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, p.x * GRIDSIZE, p.y * GRIDSIZE, 1, false, MouseEvent.BUTTON1));
+		}, MouseEvent.MOUSE_CLICKED, System.currentTimeMillis(), 0, p.x * GRIDSIZE + GRIDSIZE, p.y * GRIDSIZE + GRIDSIZE, 1, false, MouseEvent.BUTTON1));
 
 	}
 

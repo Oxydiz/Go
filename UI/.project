@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/images/splash.jpg</name>
-			<type>1</type>
-			<location>D:/ESIEA/Go/splash.jpg</location>
-		</link>
-	</linkedResources>
 </projectDescription>
