@@ -14,7 +14,7 @@ public class PlayerListener extends JCanvasMouseListener {
 		private static final long serialVersionUID = 1L;
 	}
 
-	Color playerColor = Color.WHITE;
+	static Color playerColor = Color.BLACK;
 
 	public PlayerListener(JCanvas canvas) {
 		super(canvas);
@@ -48,7 +48,7 @@ public class PlayerListener extends JCanvasMouseListener {
 		if (canvas.isFree(p)) {
 			if(!canvas.immediateDeath(p,playerColor)){
 				canvas.addRock(createRock(p));
-			}				
+			}
 		}
 
 	}
@@ -80,10 +80,12 @@ public class PlayerListener extends JCanvasMouseListener {
 	}
 
 	private Rock createRock(Point p) {
-		
-		playerColor = (playerColor == Color.BLACK) ? playerColor = Color.WHITE : Color.BLACK;
 		return new Rock(playerColor, p.x, p.y);
 
+	}
+	
+	public static void switchColor() {	
+		playerColor = (playerColor == Color.BLACK) ? playerColor = Color.WHITE : Color.BLACK;
 	}
 	
 	public Color getColor() {

@@ -1,7 +1,6 @@
 package graphics;
 
-import static main.Go_Game_UI.GOBANSIZE;
-import static main.Go_Game_UI.GRIDSIZE;
+import static main.Go_Game_UI.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -14,11 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import listeners.PlayerListener;
 import entities.AI;
 import entities.AI.AILevel;
 import entities.Rock;
 import entities.Shape;
-import static main.Go_Game_UI.*;
 
 public class JCanvas extends JPanel {
 	private static final long serialVersionUID = -1351443492057511284L;
@@ -174,6 +173,7 @@ public class JCanvas extends JPanel {
 		}
 		
 		//Change player
+		PlayerListener.switchColor();
 		if(current_player_text.getText() == PLAYERTURN){
 			current_player_text.setText(IATURN);
 			

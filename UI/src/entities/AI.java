@@ -86,16 +86,12 @@ public class AI {
 
 		while (!played) {
 
-			Point p = new Point(r % GOBANSIZE, r / GOBANSIZE);
-
-			if (canvas.isFree(p)) {
-
+			Point p = new Point(free.get(r) % GOBANSIZE, free.get(r) / GOBANSIZE);
+			if (canvas.isFree(p))
 				if (!canvas.immediateDeath(p, c)) {
 					placeRock(p);
 					played = true;
 				}
-
-			}
 
 			r++;
 			r %= free.size();

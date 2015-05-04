@@ -27,6 +27,7 @@ public class Go_Game_UI {
 	 * 		EDIT : Ouais il faudra changer l'affichage, mais ce sera plus simple avec des assets (Valentin)
 	 * Bug : L'IA peut mettre une pierre quand elle vient de se la faire prendre..
 	 * 		EDIT : cd note (Valentin)
+	 * 			EDIT : Done (Valentin)
 	 * 
 	 * NOTE : 	MAXIME JE VAIS TE BUTER :) Cette implémentation de l'IA est à chier xD
 	 * 			Pour ton information, le meilleur moen de faire ce genre d'IA c'est de lui faire créer des inputs
@@ -54,7 +55,7 @@ public class Go_Game_UI {
 	
 	public static void main(String[] args) {
 		//Set the goban
-		JCanvas goban = new JCanvas(AILevel.EASY);
+		JCanvas goban = new JCanvas(AILevel.RANDOM);
 		goban.setPreferredSize(new Dimension((GOBANSIZE - 1) * GRIDSIZE,(GOBANSIZE - 1) * GRIDSIZE));
 		new PlayerListener(goban);
 		
