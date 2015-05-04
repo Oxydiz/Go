@@ -26,9 +26,13 @@ public class JCanvas extends JPanel {
 	private ArrayList<Integer> free;
 	private ArrayList<Integer> ko;
 	private JLabel current_player_text;
+	private Color color_bg;
 	private AI ai;
 
 	public JCanvas(AILevel level) {
+		Color[] randomBackground = {new Color(203,160,0),new Color(195,176,125),new Color(150,113,23),new Color(214,138,103),new Color(126,82,58)};
+		this.color_bg = (randomBackground[(int) ((Math.random()*100)%randomBackground.length)]);
+		
 		this.shapes = new ArrayList<Shape>();
 		this.free = new ArrayList<Integer>();
 		this.ko = new ArrayList<Integer>();
@@ -55,19 +59,20 @@ public class JCanvas extends JPanel {
 		g.setColor(new Color(214,138,103));
 		g.setColor(new Color(150,113,23));
 		g.setColor(new Color(195,176,125));
-		*/
 		g.setColor(new Color(203,160,0));
+		*/
+		g.setColor(color_bg);
 		
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
 		g.setColor(new Color(32,32,32));
-		for (int i = 0; i <= this.getWidth(); i += GRIDSIZE) {
-			g.drawLine(i, 0, i, this.getHeight());
-			g.drawLine(i+1, 0, i+1, this.getHeight());
+		for (int i = 100; i <= this.getWidth()-100; i += GRIDSIZE) {
+			g.drawLine(i, 100, i, this.getHeight()-100);
+			g.drawLine(i+1, 100, i+1, this.getHeight()-100);
 		}
-		for (int i = 0; i <= this.getHeight(); i += GRIDSIZE) {
-			g.drawLine(0, i, this.getWidth(), i);
-			g.drawLine(0, i+1, this.getWidth(), i+1);
+		for (int i = 100; i <= this.getHeight()-100; i += GRIDSIZE) {
+			g.drawLine(100, i, this.getWidth()-100, i);
+			g.drawLine(100, i+1, this.getWidth()-100, i+1);
 		}
 		// Display the last line
 		g.drawLine(0, this.getHeight() - 1, this.getWidth(), this.getHeight() - 1);

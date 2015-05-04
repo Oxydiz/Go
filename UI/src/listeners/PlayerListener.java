@@ -78,6 +78,8 @@ public class PlayerListener extends JCanvasMouseListener {
 
 		// Get mouse emplacement
 		Point p = e.getPoint();
+		p.x -= GRIDSIZE;
+		p.y -= GRIDSIZE;
 
 		// Modify the coordinate to fetch our goban intersection
 		if ((p.x % GRIDSIZE) <= (GRIDSIZE - DEADZONE) / 2)

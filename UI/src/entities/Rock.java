@@ -30,7 +30,7 @@ public class Rock {
 		
 		Color c = g.getColor();
 		g.setColor(selected ? Color.BLUE : color);
-		g.fillOval(this.getX() * GRIDSIZE - ROCKSIZE / 2, this.getY() * GRIDSIZE - ROCKSIZE / 2, ROCKSIZE, ROCKSIZE);
+		g.fillOval(this.getX() * GRIDSIZE - ROCKSIZE / 2 + GRIDSIZE, this.getY() * GRIDSIZE - ROCKSIZE / 2 + GRIDSIZE, ROCKSIZE, ROCKSIZE);
 		g.setColor(c);
 		
 	}
