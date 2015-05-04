@@ -1,14 +1,21 @@
 package graphics;
 
+import static main.Go_Game_UI.GOBANSIZE;
+import static main.Go_Game_UI.GRIDSIZE;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import entities.AI;
+import entities.AI.AILevel;
 import entities.Rock;
 import entities.Shape;
 import static main.Go_Game_UI.*;
@@ -20,15 +27,25 @@ public class JCanvas extends JPanel {
 	private ArrayList<Integer> free;
 	private ArrayList<Integer> ko;
 	private JLabel current_player_text;
+	private AI ai;
 
-	public JCanvas() {
+	public JCanvas(AILevel level) {
 		this.shapes = new ArrayList<Shape>();
 		this.free = new ArrayList<Integer>();
 		this.ko = new ArrayList<Integer>();
+		try {
+			this.ai = new AI(this, level);
+		} catch (Exception e) {
+			this.ai = null;
+		}
 		
 		for (int i = 0; i < GOBANSIZE; i++)
 			for (int j = 0; j < GOBANSIZE; j++)
 				free.add(j + i * GOBANSIZE);
+	}
+	
+	public void initAI() {
+		ai.init();
 	}
 
 	@Override
@@ -157,11 +174,24 @@ public class JCanvas extends JPanel {
 		}
 		
 		//Change player
-		if(current_player_text.getText() == "<html>PLAYER TURN</html>"){
-			current_player_text.setText("<html>IA TURN</html>");				
+		if(current_player_text.getText() == PLAYERTURN){
+			current_player_text.setText(IATURN);
+			
+			repaint();
+			
+			Timer t = new Timer();
+			t.schedule(new TimerTask() {
+				
+				@Override
+				public void run() {
+					ai.play();
+				}
+			}, 600);
 		}
 		else{
-			current_player_text.setText("<html>PLAYER TURN</html>");
+			current_player_text.setText(PLAYERTURN);
+			
+			repaint();
 		}
 		current_player_text.setHorizontalAlignment(SwingConstants.CENTER);			
 	}
@@ -253,6 +283,10 @@ public class JCanvas extends JPanel {
 	
 	public void setCurrent_player_text(String current_player_text) {
 		this.current_player_text.setText(current_player_text);
+	}
+	
+	public ArrayList<Integer> getFree() {
+		return free;
 	}
 
 }

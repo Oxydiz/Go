@@ -4,23 +4,20 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
-import entities.IA;
 import entities.Rock;
 import graphics.JCanvas;
 import static main.Go_Game_UI.*;
 
 public class PlayerListener extends JCanvasMouseListener {
-	String IA_Level = "Random";
 	
 	private class OutOfRangeException extends Exception {
 		private static final long serialVersionUID = 1L;
 	}
 
-	Color playerColor = Color.BLACK;
+	Color playerColor = Color.WHITE;
 
-	public PlayerListener(JCanvas canvas, String IA_Level) {
+	public PlayerListener(JCanvas canvas) {
 		super(canvas);
-		this.IA_Level = IA_Level;
 	}
 
 	@Override
@@ -35,9 +32,6 @@ public class PlayerListener extends JCanvasMouseListener {
 		
 		if (!canvas.isFree(p))
 			canvas.removeRock(p);
-
-		super.leftClickAction(e);
-
 	}
 
 	@Override
@@ -54,15 +48,8 @@ public class PlayerListener extends JCanvasMouseListener {
 		if (canvas.isFree(p)) {
 			if(!canvas.immediateDeath(p,playerColor)){
 				canvas.addRock(createRock(p));
-				if(IA_Level == "Random"){
-					IA.IA_Random(canvas);
-				}
-				else{
-					IA.IA_Easy(canvas);
-				}
 			}				
 		}
-		super.leftClickAction(e);
 
 	}
 
@@ -94,9 +81,13 @@ public class PlayerListener extends JCanvasMouseListener {
 
 	private Rock createRock(Point p) {
 		
-		playerColor = Color.BLACK; //(playerColor == Color.BLACK) ? playerColor = Color.WHITE : Color.BLACK;
+		playerColor = (playerColor == Color.BLACK) ? playerColor = Color.WHITE : Color.BLACK;
 		return new Rock(playerColor, p.x, p.y);
 
+	}
+	
+	public Color getColor() {
+		return playerColor;
 	}
 
 }

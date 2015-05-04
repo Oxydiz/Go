@@ -1,9 +1,11 @@
 package main;
+import entities.AI.AILevel;
 import graphics.JCanvas;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -41,18 +43,20 @@ public class Go_Game_UI {
 	 */
 	
 	public static final String TITLE = "Jeu de Go";
-	public static final String VERSION = "0.4.5";
+	public static final String VERSION = "0.4.6";
 	
 	public static final int GOBANSIZE = 9;
 	public static final int GRIDSIZE = 100;
 	public static final int ROCKSIZE = 80;
 	public static final int DEADZONE = GRIDSIZE / 4;
+	public static final String PLAYERTURN = "<html>PLAYER TURN</html>";
+	public static final String IATURN = "<html>IA TURN</html>";
 	
 	public static void main(String[] args) {
 		//Set the goban
-		JCanvas goban = new JCanvas();
+		JCanvas goban = new JCanvas(AILevel.EASY);
 		goban.setPreferredSize(new Dimension((GOBANSIZE - 1) * GRIDSIZE,(GOBANSIZE - 1) * GRIDSIZE));
-		new PlayerListener(goban,"Easy");
+		new PlayerListener(goban);
 		
 		Box box_text = Box.createVerticalBox();
 		JLabel current_text_player = new JLabel("<html>PLAYER TURN</html>",SwingConstants.CENTER);
@@ -99,5 +103,7 @@ public class Go_Game_UI {
 		//Design improvement (Background and Centerscreen)
 		frame.setBackground(Color.GRAY);
 		frame.setLocationRelativeTo(null);
+		
+		goban.initAI();
 	} 
 }
