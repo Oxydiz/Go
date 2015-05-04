@@ -54,25 +54,18 @@ public class JCanvas extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		// Paint the goban
-		/* Some interesting color 
-		g.setColor(new Color(126,82,58));
-		g.setColor(new Color(214,138,103));
-		g.setColor(new Color(150,113,23));
-		g.setColor(new Color(195,176,125));
-		g.setColor(new Color(203,160,0));
-		*/
 		g.setColor(color_bg);
 		
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
 		g.setColor(new Color(32,32,32));
-		for (int i = 100; i <= this.getWidth()-100; i += GRIDSIZE) {
-			g.drawLine(i, 100, i, this.getHeight()-100);
-			g.drawLine(i+1, 100, i+1, this.getHeight()-100);
+		for (int i = GRIDSIZE; i <= this.getWidth()-GRIDSIZE; i += GRIDSIZE) {
+			g.drawLine(i, GRIDSIZE, i, this.getHeight()-GRIDSIZE);
+			g.drawLine(i+1, GRIDSIZE, i+1, this.getHeight()-GRIDSIZE);
 		}
-		for (int i = 100; i <= this.getHeight()-100; i += GRIDSIZE) {
-			g.drawLine(100, i, this.getWidth()-100, i);
-			g.drawLine(100, i+1, this.getWidth()-100, i+1);
+		for (int i = GRIDSIZE; i <= this.getHeight()-GRIDSIZE; i += GRIDSIZE) {
+			g.drawLine(GRIDSIZE, i, this.getWidth()-GRIDSIZE, i);
+			g.drawLine(GRIDSIZE, i+1, this.getWidth()-GRIDSIZE, i+1);
 		}
 		// Display the last line
 		g.drawLine(0, this.getHeight() - 1, this.getWidth(), this.getHeight() - 1);
