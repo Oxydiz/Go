@@ -26,10 +26,10 @@ public class Rock {
 		this.y = p.y;
 	}
 	
-	public void draw(Graphics g) {
+	public void draw(Graphics g,boolean selected) {
 		
 		Color c = g.getColor();
-		g.setColor(color);
+		g.setColor(selected ? Color.BLUE : color);
 		g.fillOval(this.getX() * GRIDSIZE - ROCKSIZE / 2, this.getY() * GRIDSIZE - ROCKSIZE / 2, ROCKSIZE, ROCKSIZE);
 		g.setColor(c);
 		

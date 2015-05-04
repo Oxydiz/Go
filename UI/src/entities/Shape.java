@@ -6,14 +6,16 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public class Shape extends ArrayList<Rock> {
+	
 	private static final long serialVersionUID = 1L;
 	private Color color;
-	
+	private boolean selected;
 	
 	public Shape(Rock r) {
 		super();
 		this.color = r.getColor();
 		this.add(r);
+		this.selected = false;
 	}
 	
 	public Shape get(int x, int y) {
@@ -26,7 +28,7 @@ public class Shape extends ArrayList<Rock> {
 
 	public void draw(Graphics g) {
 		for(int i = 0; i < this.size(); i++)
-			this.get(i).draw(g);
+			this.get(i).draw(g,selected);
 		
 	}
 	
@@ -46,6 +48,10 @@ public class Shape extends ArrayList<Rock> {
 				return this.get(i);
 		
 		return null;
+	}
+	
+	public void select(boolean select) {
+		this.selected = select;
 	}
 
 }

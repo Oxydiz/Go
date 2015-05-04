@@ -5,16 +5,17 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 import entities.Rock;
+import entities.Shape;
 import graphics.JCanvas;
 import static main.Go_Game_UI.*;
 
 public class PlayerListener extends JCanvasMouseListener {
-	
+
 	private class OutOfRangeException extends Exception {
 		private static final long serialVersionUID = 1L;
 	}
 
-	static Color playerColor = Color.BLACK;
+	private static Color playerColor = Color.BLACK;
 
 	public PlayerListener(JCanvas canvas) {
 		super(canvas);
@@ -29,7 +30,7 @@ public class PlayerListener extends JCanvasMouseListener {
 		} catch (OutOfRangeException e1) {
 			return;
 		}
-		
+
 		if (!canvas.isFree(p))
 			canvas.removeRock(p);
 	}
@@ -40,16 +41,36 @@ public class PlayerListener extends JCanvasMouseListener {
 		Point p;
 		try {
 			p = getPoint(e);
-		} 
-		catch(OutOfRangeException e1) {
+		} catch (OutOfRangeException e1) {
 			return;
 		}
-		
+
 		if (canvas.isFree(p)) {
-			if(!canvas.immediateDeath(p,playerColor)){
+			if (!canvas.immediateDeath(p, playerColor)) {
 				canvas.addRock(createRock(p));
 			}
 		}
+
+	}
+
+	@Override
+	protected void middleClickAction(MouseEvent e) {
+
+		canvas.unselect();
+		Point p;
+
+		try {
+			p = getPoint(e);
+		} catch (OutOfRangeException e1) {
+			return;
+		}
+
+		Shape s = canvas.getShape(p);
+
+		if (s != null)
+			canvas.getShape(p).select(true);
+		
+		super.middleClickAction(e);
 
 	}
 
@@ -57,25 +78,25 @@ public class PlayerListener extends JCanvasMouseListener {
 
 		// Get mouse emplacement
 		Point p = e.getPoint();
-		
+
 		// Modify the coordinate to fetch our goban intersection
-		if((p.x % GRIDSIZE) <= (GRIDSIZE - DEADZONE) / 2)
+		if ((p.x % GRIDSIZE) <= (GRIDSIZE - DEADZONE) / 2)
 			p.x -= p.x % GRIDSIZE;
-		else if((p.x % GRIDSIZE) >= (GRIDSIZE - (GRIDSIZE - DEADZONE) / 2))
+		else if ((p.x % GRIDSIZE) >= (GRIDSIZE - (GRIDSIZE - DEADZONE) / 2))
 			p.x += GRIDSIZE - (p.x % GRIDSIZE);
 		else
 			throw new OutOfRangeException();
-		
-		if((p.y % GRIDSIZE) <= (GRIDSIZE - DEADZONE) / 2)
+
+		if ((p.y % GRIDSIZE) <= (GRIDSIZE - DEADZONE) / 2)
 			p.y -= p.y % GRIDSIZE;
-		else if((p.y % GRIDSIZE) >= (GRIDSIZE - (GRIDSIZE - DEADZONE) / 2))
+		else if ((p.y % GRIDSIZE) >= (GRIDSIZE - (GRIDSIZE - DEADZONE) / 2))
 			p.y += GRIDSIZE - (p.y % GRIDSIZE);
 		else
 			throw new OutOfRangeException();
-		
+
 		p.x /= GRIDSIZE;
 		p.y /= GRIDSIZE;
-		
+
 		return p;
 	}
 
@@ -83,11 +104,11 @@ public class PlayerListener extends JCanvasMouseListener {
 		return new Rock(playerColor, p.x, p.y);
 
 	}
-	
-	public static void switchColor() {	
+
+	public static void switchColor() {
 		playerColor = (playerColor == Color.BLACK) ? playerColor = Color.WHITE : Color.BLACK;
 	}
-	
+
 	public Color getColor() {
 		return playerColor;
 	}

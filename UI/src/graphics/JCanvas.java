@@ -164,6 +164,8 @@ public class JCanvas extends JPanel {
 	}
 	
 	public void addRock(Rock r) {
+		
+		unselect();
 		ko = new ArrayList<Integer>();
 		fuseShapes(r);
 		free.remove((Integer) (r.getX() + r.getY() * GOBANSIZE));
@@ -273,6 +275,17 @@ public class JCanvas extends JPanel {
 		return null;
 	}
 	
+	public Shape getShape(Point p) {
+		if(isFree(p))
+			return null;
+		else
+			for(int i = 0; i < shapes.size();i++)
+				if(shapes.get(i).get(p) != null)
+					return shapes.get(i);
+		
+		return null;
+	}
+	
 	public JLabel getCurrent_player_text() {
 		return current_player_text;
 	}
@@ -287,6 +300,12 @@ public class JCanvas extends JPanel {
 	
 	public ArrayList<Integer> getFree() {
 		return free;
+	}
+	
+	public void unselect() {
+		for(int i = 0; i < shapes.size();i++) {
+			shapes.get(i).select(false);
+		}
 	}
 
 }
