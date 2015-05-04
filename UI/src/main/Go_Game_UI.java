@@ -5,6 +5,7 @@ import graphics.JCanvas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -36,14 +37,14 @@ public class Go_Game_UI {
 	public static final String VERSION = "0.4.8";
 	
 	public static final int GOBANSIZE = 9;
-	public static final int GRIDSIZE = 100;
-	public static final int ROCKSIZE = 80;
+	public static final int GRIDSIZE = (Toolkit.getDefaultToolkit().getScreenSize().getHeight() >= 1800)?100:80;
+	public static final int ROCKSIZE = (Toolkit.getDefaultToolkit().getScreenSize().getHeight() >= 1800)?80:60;
 	public static final int DEADZONE = GRIDSIZE / 4;
 	public static final String PLAYERTURN = "<html>PLAYER TURN</html>";
 	public static final String IATURN = "<html>IA TURN</html>";
 	
 	public static void main(String[] args) {
-		//Set the goban
+		//Set the goban		
 		JCanvas goban = new JCanvas(AILevel.RANDOM);
 		goban.setPreferredSize(new Dimension((GOBANSIZE + 1) * GRIDSIZE,(GOBANSIZE + 1) * GRIDSIZE));
 		new PlayerListener(goban);
