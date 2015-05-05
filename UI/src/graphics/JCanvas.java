@@ -125,7 +125,7 @@ public class JCanvas extends JPanel {
 			shapes.remove(a.get(i));
 		}
 
-		a.add(0, new Shape(r));
+		a.add(0, new Shape(r,this));
 		while (a.size() > 1) {
 			a.get(0).addAll(a.get(1));
 			a.remove(1);
@@ -196,6 +196,7 @@ public class JCanvas extends JPanel {
 				@Override
 				public void run() {
 					ai.play();
+					t.cancel();
 				}
 			}, 600);
 		}
