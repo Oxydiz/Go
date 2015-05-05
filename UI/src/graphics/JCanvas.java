@@ -127,7 +127,7 @@ public class JCanvas extends JPanel {
 
 		a.add(0, new Shape(r,this));
 		while (a.size() > 1) {
-			a.get(0).addAll(a.get(1));
+			a.get(0).merge(a.get(1));
 			a.remove(1);
 		}
 
@@ -178,6 +178,8 @@ public class JCanvas extends JPanel {
 		ko = new ArrayList<Integer>();
 		fuseShapes(r);
 		free.remove((Integer) (r.getX() + r.getY() * GOBANSIZE));
+		for(int i = 0; i < shapes.size(); i++)
+			shapes.get(i).removeFreedom(r.getPosition());
 		boolean c = captureEnemy(r);
 		if(c && freeSpace(r) == 1) {
 			ko(r);
