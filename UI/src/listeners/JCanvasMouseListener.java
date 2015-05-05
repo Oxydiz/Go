@@ -24,10 +24,8 @@ public abstract class JCanvasMouseListener extends MouseAdapter {
 	public void mouseClicked(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			leftClickAction(e);
-		} else if(SwingUtilities.isRightMouseButton(e)){
-			rightClickAction(e);
 		} else {
-			middleClickAction(e);
+			rightClickAction(e);
 		}
 	}
 
@@ -37,10 +35,7 @@ public abstract class JCanvasMouseListener extends MouseAdapter {
 	}
 
 	protected void leftClickAction(MouseEvent e) {
-		canvas.repaint();
-	}
-	
-	protected void middleClickAction(MouseEvent e) {
+
 		canvas.repaint();
 	}
 	
