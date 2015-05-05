@@ -29,7 +29,7 @@ public class Go_Game_UI {
 	public static void main(String[] args) {
 		//Set the goban
 		JCanvas goban = new JCanvas();
-		goban.setPreferredSize(new Dimension(GOBANSIZE * GRIDSIZE,GOBANSIZE * GRIDSIZE));
+		goban.setPreferredSize(new Dimension(GOBANSIZE * GRIDSIZE - GRIDSIZE,GOBANSIZE * GRIDSIZE - GRIDSIZE));
 		new SimpleMouseListener(goban);
 		
 		Box box_text = Box.createVerticalBox();

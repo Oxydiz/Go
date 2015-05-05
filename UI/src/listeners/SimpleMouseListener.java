@@ -23,16 +23,6 @@ public class SimpleMouseListener extends JCanvasMouseListener {
 	@Override
 	protected void rightClickAction(MouseEvent e) {
 
-		Point p;
-		try {
-			p = getPoint(e);
-		} catch (OutOfRangeException e1) {
-			return;
-		}
-		
-		if (!canvas.isFree(p))
-			canvas.removeRock(p);
-
 		super.leftClickAction(e);
 
 	}

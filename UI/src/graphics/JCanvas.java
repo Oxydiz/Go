@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import entities.InfluenceMap;
 import entities.Rock;
 import entities.Shape;
 import static main.Go_Game_UI.*;
@@ -15,14 +16,11 @@ public class JCanvas extends JPanel {
 	private static final long serialVersionUID = -1351443492057511284L;
 
 	private ArrayList<Shape> shapes;
-	private ArrayList<Integer> free;
+	private InfluenceMap map;
 
 	public JCanvas() {
 		this.shapes = new ArrayList<Shape>();
-		this.free = new ArrayList<Integer>();
-		for (int i = 0; i < GOBANSIZE + 1; i++)
-			for (int j = 0; j < GOBANSIZE + 1; j++)
-				free.add(j + i * GOBANSIZE);
+		this.map = new InfluenceMap();
 	}
 
 	@Override
@@ -43,6 +41,8 @@ public class JCanvas extends JPanel {
 
 		for (int i = 0; i < shapes.size(); i++)
 			shapes.get(i).draw(g);
+		
+		map.overlay(g);
 	}
 
 	private void captureEnemy(Rock r) {
@@ -122,12 +122,12 @@ public class JCanvas extends JPanel {
 
 	public void addRock(Rock r) {
 		fuseShapes(r);
-		free.remove((Integer) (r.getX() + r.getY() * GOBANSIZE));
+		map.placeRock(r);
 		captureEnemy(r);
 	}
 
 	public void removeRock(Rock r, boolean repaint) {
-		free.add(r.getPosition());
+		map.set(r.getPosition(), r.getOppositeColor());
 		if (repaint)
 			this.repaint();
 	}
@@ -143,8 +143,9 @@ public class JCanvas extends JPanel {
 
 	}
 
+
 	public boolean isFree(Point p) {
-		return free.contains(p.x + p.y * GOBANSIZE);
+		return map.isFree(p.x + p.y * GOBANSIZE);
 	}
 
 	public boolean isFree(Rock r) {
@@ -152,7 +153,7 @@ public class JCanvas extends JPanel {
 	}
 
 	public boolean isFree(Rock r, int x, int y) {
-		return free.contains(r.getPosition() + x + (y * GOBANSIZE));
+		return map.isFree(r.getPosition() + x + (y * GOBANSIZE));
 	}
 
 }

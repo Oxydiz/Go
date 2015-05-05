@@ -37,6 +37,10 @@ public class Rock {
 	
 	public Color getColor() {
 		return color;
+	}	
+	
+	public Color getOppositeColor() {
+		return color.equals(Color.BLACK) ? Color.WHITE : Color.BLACK;
 	}
 
 	public int getX() {
